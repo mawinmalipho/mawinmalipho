@@ -194,14 +194,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoModal = document.getElementById('videoModal');
     const closeModalBtn = document.getElementById('closeModal');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
-    const modalImg = document.getElementById('modalVideoImg');
+    const iframeContainer = document.querySelector('.video-container-iframe');
+    const originalMockPlayerHTML = iframeContainer ? iframeContainer.innerHTML : '';
 
     portfolioItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-            const imgSrc = item.querySelector('.portfolio-img').src;
-            if (videoModal && modalImg) {
-                modalImg.src = imgSrc;
+            const videoUrl = item.getAttribute('data-video');
+            if (videoModal && iframeContainer && videoUrl) {
+                // Load iframe dynamically with autoplay enabled
+                iframeContainer.innerHTML = `<iframe width="100%" height="100%" src="${videoUrl}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
                 videoModal.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Stop background scrolling
             }
@@ -211,6 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeModal() {
         if (videoModal) {
             videoModal.classList.remove('active');
+            if (iframeContainer) {
+                iframeContainer.innerHTML = originalMockPlayerHTML; // Reset to original and stop playback
+            }
             document.body.style.overflow = 'auto'; // Restore background scrolling
         }
     }
