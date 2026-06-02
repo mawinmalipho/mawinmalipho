@@ -1,0 +1,12 @@
+{
+  "name": "mawin-malipho-landing",
+  "version": "1.0.0",
+  "description": "Mawin Malipho Video Production Landing Page with Vercel Postgres",
+  "main": "api/submit.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/postgres": "^0.9.0"
+  }
+}
