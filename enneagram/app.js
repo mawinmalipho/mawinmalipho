@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnRetry = document.getElementById("btn-retry");
   const btnShare = document.getElementById("btn-share");
   const btnScanEnemy = document.getElementById("btn-scan-enemy");
+  const btnDownloadImage = document.getElementById("btn-download-image");
   const btnBack = document.getElementById("btn-back");
 
   const progressBar = document.getElementById("progress-bar");
@@ -657,6 +658,38 @@ document.addEventListener("DOMContentLoaded", () => {
   btnShare.addEventListener("click", shareResult);
   btnScanEnemy.addEventListener("click", openEnemyScan);
   closeModalBtn.addEventListener("click", closeEnemyScan);
+
+  if (btnDownloadImage) {
+    btnDownloadImage.addEventListener("click", () => {
+      const originalText = btnDownloadImage.innerHTML;
+      btnDownloadImage.innerHTML = "⏳ กำลังบันทึกรูปภาพ...";
+      btnDownloadImage.disabled = true;
+
+      const targetElement = document.getElementById("results-screen");
+      const options = {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#06020f",
+        logging: false
+      };
+
+      html2canvas(targetElement, options).then(canvas => {
+        const link = document.createElement("a");
+        const nameSuffix = userName ? `-${userName}` : "";
+        link.download = `EnneaKarma-Certificate${nameSuffix}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+
+        btnDownloadImage.innerHTML = originalText;
+        btnDownloadImage.disabled = false;
+      }).catch(err => {
+        console.error("Error capturing card:", err);
+        alert("ขออภัย ไม่สามารถบันทึกภาพได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง");
+        btnDownloadImage.innerHTML = originalText;
+        btnDownloadImage.disabled = false;
+      });
+    });
+  }
 
   // Back button functionality
   btnBack.addEventListener("click", () => {

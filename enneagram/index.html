@@ -7,12 +7,12 @@
   <!-- Primary Meta Tags -->
   <title>Enneaกรรม | แบบทดสอบเงาบาปและกิเลสฝังใจประจำลักษณ์</title>
   <meta name="title" content="Enneaกรรม | แบบทดสอบเงาบาปและกิเลสฝังใจประจำลักษณ์">
-  <meta name="description" content="ส่องกระจกดูเงาบาปประจำตัวคุณผ่านแบบทดสอบ Enneagram สายดาร์กจิกกัดแสบๆ คันๆ แต่ได้คิด พร้อมตรวจใบแจ้งหนี้กรรมและสแกนหาเจ้ากรรมนายเวร">
+  <meta name="description" content="ส่องกระจกดูเงาบาปประจำตัวคุณผ่านแบบทดสอบ Enneagram สายดาร์กจิกกัดแสบๆ คันๆ แต่ได้คิด พร้อมตรวจใบอนุโมทนากรรมและสแกนหาเจ้ากรรมนายเวร">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Enneaกรรม | แบบทดสอบเงาบาปและกิเลสฝังใจประจำลักษณ์">
-  <meta property="og:description" content="ส่องกระจกดูเงาบาปประจำตัวคุณผ่านแบบทดสอบ Enneagram สายดาร์กจิกกัดแสบๆ คันๆ แต่ได้คิด พร้อมตรวจใบแจ้งหนี้กรรมและสแกนหาเจ้ากรรมนายเวร">
+  <meta property="og:description" content="ส่องกระจกดูเงาบาปประจำตัวคุณผ่านแบบทดสอบ Enneagram สายดาร์กจิกกัดแสบๆ คันๆ แต่ได้คิด พร้อมตรวจใบอนุโมทนากรรมและสแกนหาเจ้ากรรมนายเวร">
   <meta property="og:image" content="https://mawinmalipho.github.io/enneagram/preview.png">
 
   <!-- Google Fonts -->
@@ -22,6 +22,9 @@
   
   <!-- Styling -->
   <link rel="stylesheet" href="/enneagram/style.css">
+  
+  <!-- html2canvas for capturing certificate -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   
@@ -162,7 +165,7 @@
     <section id="results-screen" class="card">
       <!-- Invoice Header Decorator -->
       <div class="invoice-header">
-        <div class="invoice-title">ใบแจ้งหนี้กรรม</div>
+        <div class="invoice-title">ใบอนุโมทนากรรม</div>
         <div class="invoice-serial" id="invoice-id">No. KM-666-0001</div>
       </div>
 
@@ -228,8 +231,9 @@
       </div>
 
       <!-- Action buttons -->
-      <div class="results-actions">
+      <div class="results-actions" data-html2canvas-ignore>
         <button id="btn-scan-enemy" class="btn btn-secondary btn-glow">⚡ สแกนหาเจ้ากรรมนายเวร</button>
+        <button id="btn-download-image" class="btn btn-secondary btn-glow">📸 ดาวน์โหลดใบอนุโมทนา</button>
         <button id="btn-share" class="btn btn-primary btn-glow">🔗 แชร์ผลกรรมประจานตน</button>
         <button id="btn-retry" class="btn btn-outline">เวียนว่ายตายเกิดใหม่ (ทำอีกรอบ)</button>
       </div>
@@ -267,7 +271,7 @@
   </div>
 
   <!-- Share Toast -->
-  <div id="share-toast" class="toast">คัดลอกใบแจ้งหนี้กรรมไปยังคลิปบอร์ดแล้ว! เตรียมไปโพสต์ประจานตัวเองได้เลย</div>
+  <div id="share-toast" class="toast">คัดลอกใบอนุโมทนากรรมไปยังคลิปบอร์ดแล้ว! เตรียมไปโพสต์ประจานตัวเองได้เลย</div>
 
   <!-- JavaScript Modules -->
   <script src="/enneagram/questions.js"></script>
