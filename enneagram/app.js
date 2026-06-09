@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let userScores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
   let answersHistory = []; // Tracks selected choices indices to support going back
   let userName = "";
-  let userPhone = "";
+  let userEmail = "";
   let primaryType = 1;
 
   // --- Enneagram Profiles Data ---
@@ -195,27 +195,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startQuiz() {
     const nameInput = document.getElementById("user-name");
-    const phoneInput = document.getElementById("user-phone");
+    const emailInput = document.getElementById("user-email");
     const errorMsg = document.getElementById("info-error-msg");
 
     const nameVal = nameInput.value.trim();
-    const phoneVal = phoneInput.value.trim();
+    const emailVal = emailInput.value.trim();
 
-    if (!nameVal || !phoneVal) {
+    if (!nameVal || !emailVal) {
+      errorMsg.innerText = "⚠️ กรุณากรอกชื่อและอีเมลก่อนเริ่ม";
       errorMsg.classList.remove("hidden");
       if (!nameVal) nameInput.style.borderColor = "var(--neon-pink)";
-      if (!phoneVal) phoneInput.style.borderColor = "var(--neon-pink)";
+      if (!emailVal) emailInput.style.borderColor = "var(--neon-pink)";
+      return;
+    }
+
+    if (!emailVal.includes("@")) {
+      errorMsg.innerText = "⚠️ กรุณากรอกอีเมลให้ถูกต้อง";
+      errorMsg.classList.remove("hidden");
+      emailInput.style.borderColor = "var(--neon-pink)";
       return;
     }
 
     // Reset styles
     nameInput.style.borderColor = "";
-    phoneInput.style.borderColor = "";
+    emailInput.style.borderColor = "";
     errorMsg.classList.add("hidden");
 
     // Store globally
     userName = nameVal;
-    userPhone = phoneVal;
+    userEmail = emailVal;
 
     introScreen.classList.remove("active");
     resultsScreen.classList.remove("active");
@@ -437,7 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function saveResultToDatabase(dominant, awarenessLevel, scores) {
     const payload = {
       name: userName,
-      phone: userPhone,
+      email: userEmail,
       dominant_type: dominant,
       awareness_level: awarenessLevel,
       scores: scores

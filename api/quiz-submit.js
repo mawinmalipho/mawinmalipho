@@ -20,11 +20,11 @@ export default async function handler(request, response) {
   }
 
   // Parse body data
-  const { name, phone, dominant_type, awareness_level, scores } = request.body;
+  const { name, email, dominant_type, awareness_level, scores } = request.body;
 
   // Simple validation
-  if (!name || !phone || dominant_type === undefined || !awareness_level || !scores) {
-    return response.status(400).json({ message: 'ข้อมูลไม่ครบถ้วน (กรุณากรอกชื่อและเบอร์โทรศัพท์)' });
+  if (!name || !email || dominant_type === undefined || !awareness_level || !scores) {
+    return response.status(400).json({ message: 'ข้อมูลไม่ครบถ้วน (กรุณากรอกชื่อและอีเมล)' });
   }
 
   // Check if credentials exist
@@ -44,7 +44,7 @@ export default async function handler(request, response) {
       .insert([
         { 
           name,
-          phone,
+          email,
           dominant_type: parseInt(dominant_type), 
           awareness_level, 
           scores 

@@ -145,6 +145,7 @@ body {
   color: var(--neon-pink);
   text-shadow: 0 0 10px var(--neon-pink);
   margin-left: 2px;
+  font-size: 1.12em;
 }
 
 /* 4. BASE CARD STYLING (GLASSMORPHISM) */
