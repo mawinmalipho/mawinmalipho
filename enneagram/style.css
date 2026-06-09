@@ -811,6 +811,12 @@ p {
   position: relative;
 }
 
+.modal.active .modal-content {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 .modal-header {
   display: flex;
   justify-content: space-between;
