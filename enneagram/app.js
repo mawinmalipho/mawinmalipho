@@ -416,7 +416,12 @@ document.addEventListener("DOMContentLoaded", () => {
       scores: scores
     };
 
-    fetch('/api/quiz-submit', {
+    // Dynamically point to Vercel production deployment if running on GitHub Pages
+    const apiEndpoint = window.location.hostname.includes("github.io")
+      ? "https://mawinmalipho-github-io.vercel.app/api/quiz-submit"
+      : "/api/quiz-submit";
+
+    fetch(apiEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -251,8 +251,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const contact = document.getElementById('form-contact').value;
             const details = document.getElementById('form-details').value;
 
+            // Dynamically point to Vercel production deployment if running on GitHub Pages
+            const apiEndpoint = window.location.hostname.includes("github.io")
+                ? "https://mawinmalipho-github-io.vercel.app/api/submit"
+                : "/api/submit";
+
             // Send request to Vercel Serverless Function
-            fetch('/api/submit', {
+            fetch(apiEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
