@@ -396,6 +396,13 @@ document.addEventListener("DOMContentLoaded", () => {
     resultTypeTitle.innerText = profile.title;
     resultDescription.innerText = profile.description;
     resultPassiveSkill.innerText = profile.passiveSkill;
+
+    // Set character portrait
+    const characterImage = document.getElementById("result-character-image");
+    if (characterImage) {
+      characterImage.src = `/enneagram/images/type${results.dominant}.png`;
+      characterImage.alt = profile.name;
+    }
     
     // Set mitigation & enemy
     resultEnemy.innerText = profile.enemyName;
